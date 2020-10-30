@@ -1,6 +1,5 @@
-﻿using System;
+﻿using UserBase.Presentation.Pages;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace UserBase
 {
@@ -10,7 +9,7 @@ namespace UserBase
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

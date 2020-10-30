@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="UserBase.Presentation.Pages.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Visual="Material">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <!--  Some logo  -->
+            <Label
+                Padding="0,60"
+                FontAttributes="Bold"
+                FontSize="60"
+                HorizontalTextAlignment="Center"
+                Text="User Base" />
+            <Entry
+                Keyboard="Email"
+                Placeholder="Email"
+                ReturnType="Next" />
+            <Entry
+                IsPassword="True"
+                Placeholder="Password"
+                ReturnType="Go" />
+            <Button Margin="0,15" Text="Login" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

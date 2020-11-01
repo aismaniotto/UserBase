@@ -22,6 +22,7 @@
                 Text="User Base" />
 
             <Entry
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                 Keyboard="Email"
                 Placeholder="Email"
                 ReturnType="Next"
@@ -37,6 +38,7 @@
 
 
             <Entry
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                 IsPassword="True"
                 Placeholder="Password"
                 ReturnType="Go"

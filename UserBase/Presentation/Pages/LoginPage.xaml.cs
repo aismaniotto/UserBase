@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using UserBase.ViewModels;
+using Xamarin.Forms;
 
 namespace UserBase.Presentation.Pages
 {
@@ -8,6 +9,7 @@ namespace UserBase.Presentation.Pages
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
+            BindingContext = new LoginViewModel();
         }
     }
 }

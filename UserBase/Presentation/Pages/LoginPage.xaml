@@ -16,12 +16,21 @@
             <Entry
                 Keyboard="Email"
                 Placeholder="Email"
-                ReturnType="Next" />
+                ReturnType="Next"
+                Text="{Binding Email}" />
             <Entry
                 IsPassword="True"
                 Placeholder="Password"
-                ReturnType="Go" />
-            <Button Margin="0,15" Text="Login" />
+                ReturnType="Go"
+                Text="{Binding Password}" />
+            <ActivityIndicator
+                x:Name="actInd"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}" />
+            <Button
+                Margin="0,15"
+                Command="{Binding LoginCommand}"
+                Text="Login" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

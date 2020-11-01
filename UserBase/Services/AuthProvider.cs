@@ -12,8 +12,6 @@ namespace UserBase.Services
     public class AuthProvider
     {
         private readonly JsonSerializerSettings _serializerSettings;
-        private readonly string _baseUri = "https://run.mocky.io/v3/83599a37-9b03-47d1-970d-555f8835355c";
-
 
         public AuthProvider()
         {
@@ -27,7 +25,7 @@ namespace UserBase.Services
 
         public async Task<Auth> AuthAsync(string email, string password)
         {
-            var uri = _baseUri;
+            var uri = $"{Settings.UrlBase}/83599a37-9b03-47d1-970d-555f8835355c";
 
             var httpClient = new HttpClient();
 

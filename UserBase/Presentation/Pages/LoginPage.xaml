@@ -3,7 +3,15 @@
     x:Class="UserBase.Presentation.Pages.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviour="clr-namespace:UserBase.Presentation.Behaviors"
+    xmlns:converter="clr-namespace:UserBase.Presentation.Converters"
     Visual="Material">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20">
             <!--  Some logo  -->
@@ -13,16 +21,36 @@
                 FontSize="60"
                 HorizontalTextAlignment="Center"
                 Text="User Base" />
+
             <Entry
                 Keyboard="Email"
                 Placeholder="Email"
                 ReturnType="Next"
-                Text="{Binding Email}" />
+                Text="{Binding Email.Value}">
+                <Entry.Behaviors>
+                    <behaviour:EntryLineValidationBehavior IsValid="{Binding Email.IsValid}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label
+                IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                Style="{StaticResource ErrorTextStyle}"
+                Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+
+
             <Entry
                 IsPassword="True"
                 Placeholder="Password"
                 ReturnType="Go"
-                Text="{Binding Password}" />
+                Text="{Binding Password.Value}">
+                <Entry.Behaviors>
+                    <behaviour:EntryLineValidationBehavior IsValid="{Binding Password.IsValid}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label
+                IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                Style="{StaticResource ErrorTextStyle}"
+                Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+
             <ActivityIndicator
                 x:Name="actInd"
                 IsRunning="{Binding IsBusy}"

@@ -34,7 +34,7 @@ namespace UserBase.ViewModels
             LoginCommand = new Command(async () => await LoginCommandAction());
         }
 
-        public void AddValidationRules()
+        private void AddValidationRules()
         {
             //Email Validation Rules
             Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Email Required" });
@@ -54,7 +54,7 @@ namespace UserBase.ViewModels
             return isEmailValid && isPasswordValid;
         }
 
-        public async Task LoginCommandAction()
+        private async Task LoginCommandAction()
         {
             if (IsBusy || !AreFieldsValid()) return;
 

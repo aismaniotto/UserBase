@@ -14,7 +14,6 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <!--  Some logo  -->
             <Label
                 Padding="0,60"
                 FontAttributes="Bold"

@@ -22,5 +22,9 @@
     <Folder Include="Services\" />
     <Folder Include="Entities\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Validators\" />
+    <Folder Include="Validators\Rules\" />
+    <Folder Include="Presentation\Converters\" />
+    <Folder Include="Presentation\Behaviors\" />
   </ItemGroup>
 </Project>

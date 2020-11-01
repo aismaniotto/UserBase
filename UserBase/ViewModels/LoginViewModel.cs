@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UserBase.Presentation.Pages;
 using UserBase.Services;
 using UserBase.Validators;
 using UserBase.Validators.Rules;
@@ -65,7 +66,7 @@ namespace UserBase.ViewModels
 
                 Settings.AuthToken = auth.Token;
                 Settings.User = Email.Value;
-
+                Application.Current.MainPage = new NavigationPage(new HomePage());
             }
             catch (WebException)
             {

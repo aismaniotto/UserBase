@@ -1,4 +1,5 @@
 ﻿using UserBase.Presentation.Pages;
+using UserBase.Services;
 using Xamarin.Forms;
 
 namespace UserBase
@@ -9,7 +10,10 @@ namespace UserBase
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            if (Settings.AuthToken == "")
+                MainPage = new NavigationPage(new LoginPage());
+            else
+                MainPage = new NavigationPage(new HomePage());
         }
 
         protected override void OnStart()

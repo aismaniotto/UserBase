@@ -17,15 +17,7 @@ namespace UserBase.ViewModels
         public ValidatableObject<string> Email { get; set; } = new ValidatableObject<string>();
         public ValidatableObject<string> Password { get; set; } = new ValidatableObject<string>();
 
-        private bool _isBusy;
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
-        }
-
         private readonly AuthProvider _authProvider;
-
 
         public LoginViewModel()
         {

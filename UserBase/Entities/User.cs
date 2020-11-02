@@ -12,5 +12,16 @@ namespace UserBase.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime BirthDay { get; set; }
+
+        public override string ToString()
+        {
+            return
+                $"ID: {ID} \n" +
+                $"Name: {Name} \n" +
+                $"PhoneNumber: {PhoneNumber} \n" +
+                $"Email: {Email} \n" +
+                $"Password: {Password} \n" +
+                $"BirthDay: {BirthDay.Month}/{BirthDay.Day} \n";
+        }
     }
 }

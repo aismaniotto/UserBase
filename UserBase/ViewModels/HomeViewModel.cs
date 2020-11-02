@@ -25,7 +25,7 @@ namespace UserBase.ViewModels
         public HomeViewModel()
         {
             CreateNewUserCommand = new Command(async () => await CreateNewUserCommandActionAsync());
-            ListUsersCommand = new Command(ListUsersCommandAction);
+            ListUsersCommand = new Command(async () => await ListUsersCommandAction());
             LogoutCommand = new Command(LogoutCommandAction);
         }
 
@@ -34,9 +34,9 @@ namespace UserBase.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new UserForm());
         }
 
-        private void ListUsersCommandAction()
+        private async Task ListUsersCommandAction()
         {
-
+            await Application.Current.MainPage.Navigation.PushAsync(new UsersPage());
         }
 
         private void LogoutCommandAction()

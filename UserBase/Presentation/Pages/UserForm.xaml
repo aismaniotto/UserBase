@@ -22,10 +22,6 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="20">
-                <ActivityIndicator
-                    x:Name="actIndTop"
-                    IsRunning="{Binding IsBusy}"
-                    IsVisible="{Binding IsBusy}" />
                 <Entry
                     IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                     Keyboard="Default"
@@ -93,7 +89,7 @@
                     Text="{Binding BirthDay.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
 
                 <ActivityIndicator
-                    x:Name="actIndBottom"
+                    x:Name="actInd"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}" />
             </StackLayout>

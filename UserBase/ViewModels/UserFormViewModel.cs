@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UserBase.DataAccess.Repositories;
+using UserBase.Entities;
 using UserBase.Validators;
 using UserBase.Validators.Rules;
 using Xamarin.Forms;
@@ -17,8 +19,12 @@ namespace UserBase.ViewModels
         public ValidatableObject<string> Password { get; set; } = new ValidatableObject<string>();
         public ValidatableObject<DateTime> BirthDay { get; set; } = new ValidatableObject<DateTime>() { Value = DateTime.Now };
 
+        private IRepository<User> _userRepository { get; set; }
+
         public UserFormViewModel()
         {
+            _userRepository = new UserRepository();
+
             AddValidationRules();
             SaveUserCommand = new Command(async () =>  await SaveUserCommandAction());
         }
@@ -58,6 +64,22 @@ namespace UserBase.ViewModels
             try
             {
                 IsBusy = true;
+                var user = new User
+                {
+                    Name = Name.Value,
+                    PhoneNumber = PhoneNumber.Value,
+                    Email = Email.Value,
+                    Password = Password.Value,
+                    BirthDay = BirthDay.Value
+                };
+                await _userRepository.Add(user);
+
+                await Application.Current.MainPage.DisplayAlert(
+                    "Success",
+                    "User saved!!",
+                    "Ok");
+
+                await Application.Current.MainPage.Navigation.PopAsync();
 
             }
             catch (Exception)

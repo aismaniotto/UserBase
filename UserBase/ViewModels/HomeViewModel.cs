@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using UserBase.Presentation.Pages;
 using UserBase.Services;
@@ -23,14 +24,14 @@ namespace UserBase.ViewModels
  
         public HomeViewModel()
         {
-            CreateNewUserCommand = new Command(CreateNewUserCommandAction);
+            CreateNewUserCommand = new Command(async () => await CreateNewUserCommandActionAsync());
             ListUsersCommand = new Command(ListUsersCommandAction);
             LogoutCommand = new Command(LogoutCommandAction);
         }
 
-        private void CreateNewUserCommandAction()
+        private async Task CreateNewUserCommandActionAsync()
         {
-
+            await Application.Current.MainPage.Navigation.PushAsync(new UserForm());
         }
 
         private void ListUsersCommandAction()

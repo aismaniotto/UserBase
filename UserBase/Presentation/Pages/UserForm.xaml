@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="UserBase.Presentation.Pages.UserForm"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviour="clr-namespace:UserBase.Presentation.Behaviors"
+    xmlns:converter="clr-namespace:UserBase.Presentation.Converters"
+    Title="New user"
+    Visual="Material">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding SaveUserCommand}"
+            Order="Primary"
+            Text="Save" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20">
+                <ActivityIndicator
+                    x:Name="actIndTop"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}" />
+                <Entry
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+                    Keyboard="Default"
+                    Placeholder="Name"
+                    ReturnType="Next"
+                    Text="{Binding Name.Value}">
+                    <Entry.Behaviors>
+                        <behaviour:EntryLineValidationBehavior IsValid="{Binding Name.IsValid}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label
+                    IsVisible="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                    Style="{StaticResource ErrorTextStyle}"
+                    Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+
+                <Entry
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+                    Keyboard="Telephone"
+                    Placeholder="Phone"
+                    ReturnType="Next"
+                    Text="{Binding PhoneNumber.Value}">
+                    <Entry.Behaviors>
+                        <behaviour:EntryLineValidationBehavior IsValid="{Binding PhoneNumber.IsValid}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label
+                    IsVisible="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                    Style="{StaticResource ErrorTextStyle}"
+                    Text="{Binding PhoneNumber.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+
+                <Entry
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+                    Keyboard="Email"
+                    Placeholder="Email"
+                    ReturnType="Next"
+                    Text="{Binding Email.Value}">
+                    <Entry.Behaviors>
+                        <behaviour:EntryLineValidationBehavior IsValid="{Binding Email.IsValid}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label
+                    IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                    Style="{StaticResource ErrorTextStyle}"
+                    Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+
+                <Entry
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+                    IsPassword="True"
+                    Placeholder="Password"
+                    ReturnType="Go"
+                    Text="{Binding Password.Value}">
+                    <Entry.Behaviors>
+                        <behaviour:EntryLineValidationBehavior IsValid="{Binding Password.IsValid}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label
+                    IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                    Style="{StaticResource ErrorTextStyle}"
+                    Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+
+                <DatePicker Date="{Binding BirthDay.Value}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}" />
+                <Label
+                    IsVisible="{Binding BirthDay.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                    Style="{StaticResource ErrorTextStyle}"
+                    Text="{Binding BirthDay.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+
+                <ActivityIndicator
+                    x:Name="actIndBottom"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
